@@ -85,9 +85,12 @@ changed: v2 emits `.mjs`/`.cjs` siblings in a flat `dist/`, so v1's `/dist/cjs/`
 
 All v2 packages are published on the public npm registry. Two notes:
 
-- As of `2.0.0-beta.1` all v2 packages share one version number (earlier alphas
-  did not). The codemod writes ranges that match what is published, so prefer its
-  manifest output over hand-pinning every package.
+- `@modelcontextprotocol/core`, `client`, `server`, `server-legacy` and `codemod`
+  always share one version number. The framework integrations (`node`, `express`,
+  `hono`, `fastify`) are versioned on their own and can be behind (see
+  `VERSIONING.md`), so don't pin them to the `server` version. The codemod writes
+  each package's own published range, so prefer its manifest output over
+  hand-pinning every package.
 - Environments that resolve through a corporate or private registry mirror may not
   have synced the newer scoped packages yet (the symptom is "not found" for a package
   that exists on npmjs.org). Point the install at the public registry
